@@ -1,6 +1,5 @@
 ﻿using MatchOdds.Models;
 using MatchOdds.Resources;
-using MatchOdds.Response;
 using MatchOdds.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿namespace MatchOdds.Enums
+﻿namespace MatchOdds.Resources
 {
     public enum Sport
     {

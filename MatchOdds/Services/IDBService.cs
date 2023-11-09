@@ -1,5 +1,5 @@
-﻿using MatchOdds.Enums;
-using MatchOdds.Models;
+﻿using MatchOdds.Models;
+using MatchOdds.Resources;
 
 namespace MatchOdds.Services
 {
