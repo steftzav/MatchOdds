@@ -7,7 +7,7 @@ public partial class Match
 {
     public int Id { get; set; }
 
-    public string? Desription { get; set; }
+    public string? Description { get; set; }
 
     public DateTime MatchDate { get; set; }
 
