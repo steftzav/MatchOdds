@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-using MatchOdds.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +7,7 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics.Metrics;
+using MatchOdds.Models;
 
 namespace MatchOdds.Services
 {
