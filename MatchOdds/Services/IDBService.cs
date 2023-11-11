@@ -7,6 +7,10 @@ namespace MatchOdds.Services
     {
         Task<Match> GetMatchWithId(int? id);
 
-        Task<List<Match>> GetMatchList(DateTime? matchDate, Sport? sport);
+        Task<List<Match>> GetMatchList(DateTime? matchDate, string? team, Sport? sport);
+
+        Task<Match> AddMatch(AddMatchRequest newMatch);
+
+        Task<List<MatchOddItem>> AddMatchOdds(AddMatchOddsRequest matchOddsRequest);
     }
 }

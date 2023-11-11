@@ -18,8 +18,7 @@ namespace MatchOdds.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MatchDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MatchTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MatchDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TeamA = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TeamB = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sport = table.Column<int>(type: "int", nullable: false)

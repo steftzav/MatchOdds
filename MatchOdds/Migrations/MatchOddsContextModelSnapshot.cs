@@ -22,7 +22,7 @@ namespace MatchOdds.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MatchOdds.Models_Old.Match", b =>
+            modelBuilder.Entity("MatchOdds.Models.Match", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,10 +33,7 @@ namespace MatchOdds.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("MatchDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("MatchTime")
+                    b.Property<DateTime>("MatchDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Sport")
@@ -55,7 +52,7 @@ namespace MatchOdds.Migrations
                     b.ToTable("Matches");
                 });
 
-            modelBuilder.Entity("MatchOdds.Models_Old.MatchOdd", b =>
+            modelBuilder.Entity("MatchOdds.Models.MatchOdd", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,14 +72,14 @@ namespace MatchOdds.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MatchId");
+                    b.HasIndex(new[] { "MatchId" }, "IX_MatchOdds_MatchId");
 
                     b.ToTable("MatchOdds");
                 });
 
-            modelBuilder.Entity("MatchOdds.Models_Old.MatchOdd", b =>
+            modelBuilder.Entity("MatchOdds.Models.MatchOdd", b =>
                 {
-                    b.HasOne("MatchOdds.Models_Old.Match", "Match")
+                    b.HasOne("MatchOdds.Models.Match", "Match")
                         .WithMany("MatchOdds")
                         .HasForeignKey("MatchId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -91,7 +88,7 @@ namespace MatchOdds.Migrations
                     b.Navigation("Match");
                 });
 
-            modelBuilder.Entity("MatchOdds.Models_Old.Match", b =>
+            modelBuilder.Entity("MatchOdds.Models.Match", b =>
                 {
                     b.Navigation("MatchOdds");
                 });

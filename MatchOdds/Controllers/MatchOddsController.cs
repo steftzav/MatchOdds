@@ -37,5 +37,64 @@ namespace MatchOdds.Controllers
 
             return response;
         }
+
+        [HttpGet("/MatchList")]
+        public async Task<MatchResponse> GetMatchList(DateTime? date, string? team, Sport? sport)
+        {
+            var response = new MatchResponse();
+            try
+            {
+                var matchList = await _dBService.GetMatchList(date, team, sport);
+                response.Matches = matchList;
+                response.Status = Messages.RESPONSE_STATUS_OK;
+            }
+            catch (Exception ex)
+            {
+                response.Status = Messages.RESPONSE_STATUS_FAIL;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpPost("/Match")]
+        public async Task<MatchResponse> AddMatch(AddMatchRequest newMatch)
+        {
+            var response = new MatchResponse();
+
+            try
+            {
+                var created = await _dBService.AddMatch(newMatch);
+                response.Matches.Add(created);
+                response.Status = Messages.RESPONSE_STATUS_OK;
+            }
+            catch (Exception ex)
+            {
+                response.Status = Messages.RESPONSE_STATUS_FAIL;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpPost("/MatchOdds")]
+        public async Task<MatchOddsResponse> AddMatchOdds(AddMatchOddsRequest matchOddsRequest)
+        {
+            var response = new MatchOddsResponse();
+
+            try
+            {
+                var created = await _dBService.AddMatchOdds(matchOddsRequest);
+                response.MatchOdds.AddRange(created);
+                response.Status = Messages.RESPONSE_STATUS_OK;
+            }
+            catch (Exception ex)
+            {
+                response.Status = Messages.RESPONSE_STATUS_FAIL;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
     }
 }
