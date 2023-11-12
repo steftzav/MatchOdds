@@ -1,12 +1,14 @@
-﻿namespace MatchOdds.Resources
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MatchOdds.Resources
 {
     public class MatchOddItem
     {
-        public int Id { get; set; }
-        public int MatchId { get; set; }
+        public int? Id { get; set; }
+        public int? MatchId { get; set; }
 
-        public string Specifier { get; set; } = null!;
+        public string? Specifier { get; set; } = null!;
 
-        public float Odd { get; set; }
+        public float? Odd { get; set; }
     }
 }

@@ -17,10 +17,10 @@ namespace MatchOdds.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     MatchDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TeamA = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TeamB = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TeamA = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    TeamB = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Sport = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -35,7 +35,7 @@ namespace MatchOdds.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MatchId = table.Column<int>(type: "int", nullable: false),
-                    Specifier = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Specifier = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Odd = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
