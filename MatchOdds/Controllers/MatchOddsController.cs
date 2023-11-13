@@ -4,7 +4,6 @@ using MatchOdds.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MatchOdds.Controllers
 {
