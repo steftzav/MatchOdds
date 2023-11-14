@@ -14,5 +14,6 @@
         public const string TEAMNAME_LENGTH = "Team name cannot be over 50 characters.";
         public const string SPECIFIER_LENGTH = "Specifier cannot be over 20 characters.";
         public const string MIN_ODD = "Odd must be at least 1.";
+        public const string INVALID_DATE = "Invalid date input.";
     }
 }

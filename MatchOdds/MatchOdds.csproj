@@ -7,6 +7,7 @@
     <UserSecretsId>f676c2fc-bae2-4d49-8b77-a91debc77f53</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
 	<DockerTargetOS>Windows</DockerTargetOS>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

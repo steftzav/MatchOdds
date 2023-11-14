@@ -18,7 +18,9 @@ namespace MatchOdds.Controllers
             _dBService = dBService;
         }
 
-        // GET: api/Match
+        /// <summary>
+        /// Fetch a Match with its id.
+        /// </summary>
         [HttpGet("/Match")]
         public async Task<ActionResult<MatchResponse>> GetMatch(int matchId)
         {
@@ -38,6 +40,9 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Fetch a MatchOdd with its id.
+        /// </summary>
         [HttpGet("/MatchOdd")]
         public async Task<ActionResult<MatchOddsResponse>> GetMatchOdd(int matchOddId)
         {
@@ -63,8 +68,16 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Fetch a list of Matches using filters.
+        /// </summary>
+        /// <remarks>
+        /// If a filter is null or empty it's ignored.
+        /// Sport must be 1 or 2.
+        /// Date must be in valid format.
+        /// </remarks>
         [HttpGet("/MatchList")]
-        public async Task<ActionResult<MatchResponse>> GetMatchList(DateTime? date, string? team, Sport? sport)
+        public async Task<ActionResult<MatchResponse>> GetMatchList(string? date, string? team, Sport? sport)
         {
             var response = new MatchResponse();
             try
@@ -82,6 +95,14 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a Match.
+        /// </summary>
+        /// <remarks>
+        /// Description is optional.
+        /// Sport must be 1 or 2.
+        /// MatchDateTime must be in valid format.
+        /// </remarks>
         [HttpPost("/Match")]
         public async Task<ActionResult<MatchResponse>> AddMatch(AddMatchRequest newMatch)
         {
@@ -102,6 +123,13 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Create Odds for a Match.
+        /// </summary>
+        /// <remarks>
+        /// matchId and id properties inside the matchOdds object are not used for this call.
+        /// odd must be a float >= 1
+        /// </remarks>
         [HttpPost("/MatchOdds")]
         public async Task<ActionResult<MatchOddsResponse>> AddMatchOdds(AddMatchOddsRequest matchOddsRequest)
         {
@@ -122,6 +150,14 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Update a Match's info using its id.
+        /// </summary>
+        /// <remarks>
+        /// Only updates non-empty fields of request.
+        /// Sport must be 1 or 2.
+        /// MatchDateTime must be in valid format.
+        /// </remarks>
         [HttpPut("/Match")]
         public async Task<ActionResult<MatchResponse>> UpdateMatch(int matchId, AddMatchRequest updateMatch)
         {
@@ -142,6 +178,13 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Update a Match Odd's info using its id.
+        /// </summary>
+        /// <remarks>
+        /// Only updates non-empty fields of request.
+        /// odd must be a float >= 1
+        /// </remarks>
         [HttpPut("/MatchOdds")]
         public async Task<ActionResult<MatchOddsResponse>> UpdateMatchOdd(UpdateMatchOddRequest updateMatchOdd)
         {
@@ -168,6 +211,9 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete a Match using its id.
+        /// </summary>
         [HttpDelete("/Match")]
         public async Task<ActionResult<MatchResponse>> DeleteMatch(int matchId)
         {
@@ -185,6 +231,9 @@ namespace MatchOdds.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete a Match Odd using its id.
+        /// </summary>
         [HttpDelete("/MatchOdds")]
         public async Task<ActionResult<MatchOddsResponse>> DeleteMatchOdd(int matchOddId)
         {

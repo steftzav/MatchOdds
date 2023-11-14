@@ -49,10 +49,15 @@ namespace MatchOdds.Services
             return await _context.MatchOdds.FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public async Task<List<Match>> GetMatchList(DateTime? matchDate, string? team, Sport? sport)
+        public async Task<List<Match>> GetMatchList(string? matchDate, string? team, Sport? sport)
         {
+            DateTime date = default;
+            if (!string.IsNullOrWhiteSpace(matchDate))
+            {
+                date = CheckDateInput(matchDate).Date;
+            }
             return await _context.Matches.Include(m => m.MatchOdds).Where(m =>
-                (matchDate == null || m.MatchDateTime == matchDate) &&
+                (string.IsNullOrWhiteSpace(matchDate) || m.MatchDateTime.Date == date) &&
                 (string.IsNullOrWhiteSpace(team) || m.TeamA == team || m.TeamB == team) &&
                 (!sport.HasValue || m.Sport == (int)sport)
             ).ToListAsync();
@@ -84,7 +89,7 @@ namespace MatchOdds.Services
             var added = new Match()
             {
                 Description = newMatch.Description,
-                MatchDateTime = DateTime.Parse(newMatch.MatchDateTime),
+                MatchDateTime = CheckDateInput(newMatch.MatchDateTime),
                 TeamA = newMatch.TeamA,
                 TeamB = newMatch.TeamB,
                 Sport = (int)newMatch.Sport
@@ -146,9 +151,9 @@ namespace MatchOdds.Services
 
                 existingMatch.Description = updateMatch.Description;
             }
-            if (updateMatch.MatchDateTime != null)
+            if (!string.IsNullOrWhiteSpace(updateMatch.MatchDateTime))
             {
-                existingMatch.MatchDateTime = DateTime.Parse(updateMatch.MatchDateTime);
+                existingMatch.MatchDateTime = CheckDateInput(updateMatch.MatchDateTime);
             }
             if (!string.IsNullOrWhiteSpace(updateMatch.TeamA))
             {
@@ -219,6 +224,17 @@ namespace MatchOdds.Services
             await _context.SaveChangesAsync();
 
             return Messages.RESPONSE_STATUS_OK;
+        }
+
+        private static DateTime CheckDateInput(string date)
+        {
+            if (DateTime.TryParse(date, out DateTime res)) {
+                return res;
+            }
+            else
+            {
+                throw new Exception(Messages.INVALID_DATE);
+            }
         }
     }
 }
