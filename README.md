@@ -12,6 +12,6 @@ and perform the CRUD operation. Details of each operation are in the swagger gen
 that create the tables in the database.
 
 # Docker
-The project can run independently or inside a docker container. In order to dockerize it, open a terminal and run "docker compose up --build". This command initializes
+The project can run independently or inside a docker container. In order to dockerize it, open a terminal inside the "MatchOdds" file of the repo and run "docker compose up --build". This command initializes
 the docker container with our project and runs it together with an sqlserver image to connect a database. Initial migrations are auto-executed when the application starts.
 Also the connection string must be switched in appsettings.json -> "MatchOddsContext" to use sqlserver docker image with server=sql_server2022.
